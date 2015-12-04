@@ -1,0 +1,32 @@
+.error{
+  position: absolute;
+  top: -45px;
+  background-color: #72a189;
+  color: #FFF;
+  padding: 3px 12px 3px;
+  border-radius: 8px;
+  opacity: 0.9;
+  min-width: 180px;
+  label {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #FFF;
+  }
+  &::before {
+    content: "";
+    bottom: -8px;
+    left: 50%;
+    margin-left: -8px;
+    border-bottom-color: #72a189;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: #72a189 transparent transparent transparent;
+    opacity:0.9
+  }
+  &.ng-inactive {
+    display: none;
+  }
+}

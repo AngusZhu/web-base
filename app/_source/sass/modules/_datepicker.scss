@@ -1,0 +1,157 @@
+div.gtadatepicker-input {
+	position: relative;
+	display: inline-block;
+}
+/* div.gtadatepicker-input .add-on {
+  background-color: #ac1a2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+  position: absolute;
+  width: 26px;
+  height: 29px;
+  display: inline-block;
+  right: 0px;
+  top: 0px;
+}
+div.gtadatepicker-input .add-on .glyphicon-calendar{
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 4px;
+	padding-left: 4px;
+} */
+div.gtadatepicker-input input {
+	width: 120px;
+  	-webkit-appearance: menulist;
+    background-color: #f3f3f3;
+    height: 30px;
+    cursor: pointer;
+}
+$red: rgb(145,23,34);
+$redHover: rgb(125,3,14);
+.gtadatepicker {
+	border-radius: 10px;
+  	overflow: hidden;
+  	padding: 0px;
+	table {
+		background-color: $red;
+		width: 280px;
+		thead {
+			th {
+				border-radius: 0px;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				text-indent: 0px !important;
+			}
+			.prev, .next {
+				width: 40px;
+			}
+			tr:first-child {
+				background-color: transparent;
+				height: 60px;
+				th {
+					color: #fff;
+					font-size: 16px;
+					&:hover {
+						background-color: $redHover;
+					}
+				}
+			}
+			tr:nth-child(2) {
+				background-color: #fff;
+				border-bottom: 3px solid #ccc;
+				th {
+					color: $red;
+					height: 12px;
+					line-height: 12px;
+					font-size: 11px;
+					width: 40px;
+					overflow: hidden;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					border-radius: 0px;
+					-webkit-border-radius: 0px;
+					-moz-border-radius: 0px;
+
+					padding: 0px;
+					margin: 0px;
+					height: 40px;
+					width: 40px;
+					border: 1px solid #ccc;
+					background-color: #fff;
+					text-indent: 0px;
+					color: rgb(129,129,129);
+					&.disabled {
+						background-color: #fff;
+					}
+                    &.range {
+//                        background-color: #e0e0e0 !important;
+                    }
+                    &.selected {
+                        background-color: #fdefb2 !important;
+                    }
+					&.day {
+						&:not(.disabled):hover {
+							background-color: #eee !important;
+						}
+						&.disabled {
+							cursor: not-allowed;
+						}
+						&.old {
+							color: #d4d4d4;
+						}
+						&.new {
+							color: #d4d4d4;
+						}
+					}
+				}
+			}
+			tr:nth-child(even) {
+				td:nth-child(even) {
+					background-color: #f9f9f9;
+				}
+				td:nth-child(odd) {
+					background-color: #fff;
+				}
+			}
+			tr:nth-child(odd) {
+				td:nth-child(even) {
+					background-color: #fff;
+				}
+				td:nth-child(odd) {
+					background-color: #f9f9f9;
+				}
+			}
+		}
+	}
+}
+
+
+.gtadatepicker table tr td.day:not(.disabled) {
+	background-color: #eee;
+}
+
+.gtadatepicker table tr td.active,
+.gtadatepicker table tr td.selected,
+.gtadatepicker table tr td.range,
+.gtadatepicker table tr td.active:hover,
+.gtadatepicker .datepicker-months table tr td span.active,
+.gtadatepicker .datepicker-years table tr td span.active
+ {
+//	background-image: -webkit-gradient(linear,0 0,0 100%,from(#48BE64),to(#397741));
+//	background-image: -webkit-linear-gradient(top,#48BE64,#397741);
+//	background-image: linear-gradient(top,#48BE64,#397741);
+//	background-image: -o-linear-gradient(top,#48BE64,#397741);
+//	background-image: -ms-linear-gradient(top,#48BE64,#397741);
+//	background-image: -moz-linear-gradient(top,#48BE64,#397741);
+    background-image: none !important;
+	background: rgb(253,239,178) !important;
+	color: #818181;
+
+}
+

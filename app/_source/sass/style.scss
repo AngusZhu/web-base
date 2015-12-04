@@ -1,0 +1,34 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />  */
+
+// import other scss files
+
+@import "utils/variables";
+
+@import "utils/mixin";
+
+@import "utils/fonts";
+
+@import "modules/reset";
+
+@import "modules/error";
+
+@import "modules/button";
+
+@import "modules/frame";
+
+@import "modules/table";
+
+@import "modules/loading";
+
+@import "modules/conponent";
+
+@import "modules/_datepicker";
+
+@import "sprite.scss";
+
+@import "modules/pages";
+
+@import "modules/error";

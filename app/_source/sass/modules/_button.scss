@@ -1,0 +1,227 @@
+/*******************  NEW BUTTON STYLE START *********************/
+//.btn {
+//    display: inline-block;
+//    padding: 9px 12px;
+//    margin-bottom: 0;
+//    font-size: 14px;
+//    font-weight: 400;
+//    line-height: 1.42857143;
+//    text-align: center;
+//    white-space: nowrap;
+//    vertical-align: middle;
+//    -ms-touch-action: manipulation;
+//    touch-action: manipulation;
+//    cursor: pointer;
+//    -webkit-user-select: none;
+//    -moz-user-select: none;
+//    -ms-user-select: none;
+//    user-select: none;
+//    background-image: none;
+//    border: 1px solid transparent;
+//    border-radius: 8px;
+//    font-size: 18px;
+//    line-height: 20px;
+//    overflow: hidden;
+//    height: auto;
+//}
+///* BUTTON COLOR */
+//.btn.btn-select {
+//    background-color: #fff;
+//    color: $darker-brown;
+//    width: 230px;
+//    &.btn-active, &.active {
+//        background-color: #89AE98;
+//        border-color: #89AE98;
+//        color: #FFF;
+//        &:hover {
+//            background-color: #89AE98;
+//            color: #fff;
+//        }
+//    }
+//    &:hover {
+//        background-color: #eee;
+//        color: $darker-brown;
+//    }
+//}
+//
+//.btn.btn-success {
+//    background-color: #62A960;
+//    border-color: #62A960;
+//    &:hover {
+//        background-color: #62A960;
+//        color: #FFF;
+//    }
+//}
+
+
+/** DEFAULT */
+//.btn {
+//    color: #FFF;
+//    background-color: $darker-brown;
+//    border-color: $darker-brown;
+//    &:hover {
+//        background-color: #8d744d;
+//        color: #eee;
+//        filter: alpha(opacity=8);
+//        opacity: .8;
+//    }
+//    &[disabled], &.disabled, &.btn-disabled {
+//        //@extend .disabled;
+//        cursor: not-allowed;
+//        filter: alpha(opacity=8);
+//        opacity: .8;
+//        -webkit-box-shadow: none;
+//        box-shadow: none;
+//        background-color: $disabled-color;
+//        border-color: $disabled-color;
+//    }
+//}
+///* BUTTON SIZE */
+//.btn-lg {
+//    width: 250px;
+//    padding: 9px 12px;
+//    line-height: 20px;
+//    font-size: 18px;
+//}
+//.btn-st {
+//    @extend .btn-lg;
+//    width: 190px;
+//}
+//.btn-sm {
+//    padding: 6px 12px;
+//    line-height: 16px;
+//}
+//.btn-xs {
+//    padding: 4px 12px;
+//    width: 155px;
+//    line-height: 14px;
+//    font-size: 14px;
+//}
+
+/******************** NEW BUTTON STYLE END ********************/
+
+// for web portal
+@import "../utils/variables";
+
+// buttons
+button[disabled=disabled] {
+  opacity: .5;
+}
+
+.btn{
+  font-size: 24px;
+  min-height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  color: $white;
+  border-radius: 0;
+
+  &:focus {
+    color: $white;
+  }
+
+  &.mid-yellow {
+    background-color: $yellow;
+    font-size: 24px;
+  }
+  &.btn-primary {
+    background-color: #8c724c;
+    font-size: 15px;
+    color: #fff;
+    width: 207px;
+    outline: none;
+    border: 0;
+
+    &:hover {
+      opacity: .8;
+    }
+    &:active {
+      background-color: $dark-brown;
+    }
+  }
+  &.sm-yellow {
+    background-color: $yellow;
+    font-size: 15px;
+    width: 76px;
+    height: 26px;
+    line-height: 26px;
+    padding:0;
+    border-bottom: 2px solid $lighter4-grey;
+  }
+  &.grey {
+    background-color: $light-grey;
+    color: #FFF;
+    font-size: 15px;
+  }
+  &.full {
+    width: 100%;
+  }
+  &.lighter-grey {
+    background-color: $lighter-grey;
+    font-size: 17px;
+    border: 1px solid $lighter5-grey;
+    color: $light-grey;
+    font-family: "FranklinGothicBook";
+  }
+  &.yellow {
+    background-color: $yellow;
+    font-size: 15px;
+    color: $white;
+  }
+  &.disabled {
+    opacity: .5;
+  }
+  &.green {
+    background-color: $green;
+    font-size: 17px;
+    font-family: "FranklinGothicBook";
+    color: $white;
+  }
+
+  &.border-btn {
+//    padding: 4px 28px;
+    border-bottom: 3px solid $brown;
+//    font-size: 18px;
+    font-family: "Constantia";
+    margin: 23px 32px 28px 0;
+
+    &:first-child {
+      margin-left: 0 !important;
+    }
+    &.first-child {
+      margin-left: 20px !important;
+    }
+  }
+
+  &.franklinGothicBook {
+    font-family: "FranklinGothicBook";
+  }
+
+  &.small {
+    width: 90px;
+  }
+  &.mid {
+    width: 207px;
+  }
+  &.italic {
+    font-style: italic;
+  }
+
+  &:hover {
+
+  }
+  &.download-btn {
+    font-size: 17px;
+    background-color: $light3-green;
+    color: $white;
+    padding: 4px 14px;
+  }
+} // end btn
+
+/* sam pang for account transaction submit button */
+.btn-sm-width{
+	width:100px !important; 
+}
+
+

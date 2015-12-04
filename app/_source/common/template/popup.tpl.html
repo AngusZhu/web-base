@@ -1,0 +1,12 @@
+<div class="overlay-info">
+    <h2 class="msg-title">{{titleMsg}}<div class="overlay-close-link" ng-show="close"><i class="icon icon-popup_close_btn"></i></div></h2>
+    <div class="msg-content">
+        <div class="message">
+            <p ng-repeat="msg in popupMessage track by $index">{{msg}}</p>
+        </div>
+    </div>
+    <div class="btn-wrap btn-center">
+        <div class="overlay-close-link btn uppercase yellow uppercase mid" ng-show="close"><a href="">Cancel</a></div>
+        <div class="btn btn-secondary overlay-confirm-link uppercase yellow uppercase mid">Ok</div>
+    </div>
+</div>

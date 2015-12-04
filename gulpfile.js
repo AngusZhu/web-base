@@ -6,6 +6,7 @@ var config = extend(
 var gulp = require('gulp');
 	crypto = require('crypto');
 	jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
 	concat = require('gulp-concat'),
     del = require('del'),
     chmod = require('gulp-chmod'),
@@ -26,9 +27,9 @@ var gulp = require('gulp');
     //symlink = require('gulp-symlink'),
 	//gulpFilter = require('gulp-filter'),
 
-
-
 var map = require('map-stream');
+
+
 
 var lang = 'en_us';
 var hash = '';
@@ -47,13 +48,12 @@ var options = {
         src: [
             '!app/vendor/**/*.js',
             '!app/assets/js/all.*.js',
-            'app/web/index.js',
-            'config/config.js',
-            'config/config-local.js',
+            'app/app.js',
+            'app/web/**/*.js',
+            '!app/web/**/*_test.js',
             'app/_source/common/**/*.js',
             'app/_source/i18n/**/*.js',
-            'config/**/*.js',
-            'app/web/**/*.js'
+            'config/**/*.js'
         ]
     },
     css: {
@@ -79,7 +79,7 @@ options.css.clean = options.root + '/assets/css/all.*.css';
 options.css.name = 'all.' + hash + '.css';
 options.vendor = options.root + '/vendor';
 options.html.index = options.root + '/index.html';
-options.html.watch = ['app/web/modules/**/*.html'];
+options.html.watch = ['app/web/**/*.html'];
 
 options.img.src = options.root + '/_source/img/*.{png,jpg,ico}';
 options.img.imgDest = options.root + '/assets/img/';
@@ -88,10 +88,6 @@ options.img.clean = options.root + '/assets/img/sprite.*.png';
 
 function errorReporter () {
     return map(function (file, cb) {
-        if (!file.jshint.success) {
-            //process.exit(1);
-            return false;
-        }
         cb(null, file);
     });
 };
@@ -113,6 +109,10 @@ function updateHash() {
     return hash;
 }
 
+function errrHandler( e ){
+    // 控制台发声,错误时beep一下
+    console.log(" error happened...")
+}
 updateHash();
 
 gulp.task('bower', function() {
@@ -124,7 +124,7 @@ gulp.task('githooks', function () {
 gulp.task('jshint', function() {
   	return gulp.src(options.js.src)
         .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter(stylish))
         .pipe(map(function (file, cb) {
                 if (!file.jshint.success) {
                     console.log('Please fix those errors before commit!!!'.inverse.red);
@@ -147,14 +147,14 @@ gulp.task('css', ['img_build'], function () {
 
 gulp.task('js', function () {
     flagJs = true;
-  	var stream = gulp.src(options.js.src)
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(errorReporter())
-        .pipe(plumber())
-        .pipe(concat(options.js.name));
     del(options.js.clean);
-  	return stream.pipe(gulp.dest(options.js.dest));
+    return gulp.src(options.js.src)
+        .pipe(plumber())
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter(stylish))
+        .pipe(errorReporter())
+        .pipe(concat(options.js.name))
+        .pipe(gulp.dest(options.js.dest));
 });
 
 gulp.task('img_build', function(cb) {

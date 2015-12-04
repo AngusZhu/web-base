@@ -1,0 +1,430 @@
+@import"../utils/variables";
+input[type=text], input[type=password], input[type=email],input[type=tel], select {
+    width: 270px;
+    height:30px;
+    line-height: 30px;
+    border: 1px solid $light-grey;
+    text-indent: 10px;
+    &.small {
+        width: 170px;
+    }
+    &.middle {
+        width: 179px;
+        height: 25px;
+    }
+}
+.wrapper {
+    width: 1920px;
+    margin: auto;
+    min-height: 100%;
+    position: relative;
+    vertical-align: middle;
+    background: url("../../assets/img/bg.jpg") center 224px no-repeat;
+
+    >header {
+        height: 224px;
+        top: 0;
+    }
+    >footer {
+        position: absolute;
+        margin-top: 120px;
+        bottom: 0;
+    }
+    section {
+        .container {
+            width: 100%;
+            height: 320px;
+            background: $white;
+            opacity: .8;
+            filter: alpha(opacity=80);
+            position: absolute;
+            top: 50%;
+            margin-top: -160px;
+        }
+    }
+    .lg-content {
+        width: 1550px;
+        margin: 0 auto;
+        >span {
+            cursor: pointer;
+        }
+    }
+    .content {
+        width: 1060px;
+        margin: 0 auto;
+        >p {
+            font-size: 24px;
+            color: $yellow;
+            text-align: center;
+            &.tips {
+                line-height: 320px;
+                text-transform: uppercase;
+                font-style: italic;
+            }
+        }
+        >ul {
+            &.question {
+                >li {
+                    font-size: 24px;
+                    color: $yellow;
+                    padding-right: 0;
+                    margin-bottom: 14px;
+                    >p {
+                        font-size: 20px;
+                        font-family:"franklingothicbook";
+                        padding-bottom: 12px;
+                        text-align: left;
+                        padding-left: 294px;
+                    }
+                }
+                input {
+                    width: 466px;
+                }
+            }
+            >li {
+                padding-right: 160px;
+            }
+        }
+        ul {
+            li {
+                text-align: center;
+                margin-bottom: 20px;
+                &.title {
+                    padding-right: 0 !important;
+                }
+                &:first-child {
+                    margin-top: 20px;
+                }
+                >label {
+                    font-size: 24px;
+                    color: $yellow;
+                    width: 240px;
+                    text-align: right;
+                    display: inline-block;
+                    &.longer-width{ width: 325px;}
+                }
+                >p {
+                    font-size: 24px;
+                    color: $yellow;
+                }
+                &.btn-area {
+                    margin-left: 180px;
+                }
+                >ul {
+                    >li {
+                        margin-bottom: 10px !important;
+                    }
+                }
+                &.padding-left-25 {padding-left: 25px}
+            }
+        }
+        &.login {
+            >ul {
+                >li {
+                    &:first-child {
+                        margin-top: 60px;
+                    }
+                    &.get-pwd {
+                        margin-left: 390px;
+                        >a {
+                            color: $yellow;
+                            font-size: 18px;
+                            text-decoration: underline;
+                        }
+                    }
+                    &.btn-area {
+                        margin-top: 60px;
+                    }
+                }
+            }
+        }
+    }
+    .main {
+        width: 1060px;
+        /*margin: 196px auto 0 auto;*/
+        position: relative;
+    }
+    .txt-center {
+        text-align: center !important;
+    }
+    .txt-left {
+        text-align: left !important;
+    }
+    .txt-right {
+        text-align: right !important;
+    }
+    &.login {
+      ul {
+        >li {
+          &:first-child {
+            margin-top: 60px;
+          }
+
+          &.get-pwd {
+            margin-left: 390px;
+
+            >a {
+              color: $yellow;
+              font-size: 18px;
+              text-decoration: underline;
+            }
+          } // end get-pwd
+          &.btn-area {
+            margin-top: 60px;
+          }
+        } // end li
+      } // end ul
+    } // end login
+    .container {
+        position: relative;
+        width: 1060px;
+        margin: auto;
+        min-height: 700px;
+        padding-top: 160px;
+        .top-nav {
+            padding-left: 240px;
+            .nav .active a{
+                background-color: #901823;
+            }
+        }
+        .left-sidebar {
+            position: absolute;
+            width: 240px;
+            top: 320px;
+        }
+        .right-sidebar {
+            margin-left: 240px;
+            padding-bottom: 260px;
+        }
+    }
+}
+.right {
+    float: right !important;
+}
+.left {
+    float: left !important;
+}
+.relative {
+    position: relative;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+.lowercase {
+    text-transform: lowercase;
+}
+.franklingothicbook {
+    font-family:"franklingothicbook";
+}
+.franklingothicbookregular {
+    font-family:"franklingothicbookregular";
+}
+.bold {
+    font-weight: bold;
+}
+.font15 {
+  font-size: 15px;
+}
+.font17 {
+    font-size: 17px;
+}
+.font26 {
+    font-size: 26px;
+}
+.font30 {
+    font-size: 30px;
+}
+.grey {
+    /* color: $light-grey; */
+}
+.yellow {
+    color: $yellow;
+}
+.green {
+  color: $green;
+}
+.red {
+  color: $red !important;
+}
+.light-yellow,.orange {
+    color: $lighter4-yellow;
+}
+.purple {
+    color: $purple;
+}
+.pink {
+  color: $pink;
+}
+.more {
+    font-family:"franklingothicbook";
+    font-size: 15px;
+    color: $red;
+}
+.txt {
+    color: $lighter1-grey;
+    font-size: 15px;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.detail {
+   text-transform: capitalize;
+}
+
+h4 {
+    color: $light-grey;
+    font-size: 15px;
+}
+h3 {
+    color: $red;
+    margin-top: 6px;
+}
+h2 {
+    color: $red;
+    margin-top: 6px;
+    font-family:"constantia";
+}
+h1 {
+    margin-bottom: 8px;
+}
+.large-width {
+    width: 398px !important;
+}
+.white-bg {
+    background-color: $white !important;
+}
+.yellow-bg,.CS-block {
+  background-color: $yellow !important;
+}
+.deep-green-bg {
+  background-color: $green !important;
+}
+.red-bg {
+  background-color: $darker-red !important;
+}
+.light-yellow-bg {
+  background-color: $lighter5-yellow;
+}
+.light-yellow-red-bg {
+  background-color: $lighter5-yellow-red;
+}
+.light2-green-bg {
+  background-color: $light2-green;
+}
+.light-green-bg,.AV-block {
+  background-color: $light1-green;
+}
+.pink-bg,.RE-block {
+  background-color: $pink !important;
+}
+.light-pink-bg {
+  background-color: $light-green;
+}
+.green-bg {
+    background-color: $light-green;
+    padding: 12px 20px 20px 20px;
+}
+.grey-bg {
+    background-color: $lighter-grey;
+    padding: 12px 20px 20px 20px;
+    margin: 16px 0;
+}
+.spacing {
+    padding: 20px 0 60px 0;
+}
+.comment {
+    margin-top: 30px;
+}
+.hide {
+    display: none;
+}
+.reset-bottom {
+  margin-bottom: 0 !important;
+}
+
+
+// for demo style
+.demo {
+    background: $white;
+
+    span {
+        margin: 0 20px;
+        display: inline-block;
+    }
+}
+
+#frm-changePswNoQuestion .gtadatepicker-input input {
+  width: 270px;
+}
+
+.border-gray-1 {
+    border: 1px solid $gray;
+}
+
+.outer-border{
+    border:3px solid $yellow ;
+}
+
+// for login page kaptcha field style
+.kaptcha {
+    input {
+        width: 124px !important;
+    }
+    img {
+        height: 28px !important;
+        margin-left: 10px !important;
+        width: 75px !important;               
+    }
+}
+
+.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    
+    filter: grayscale(100%);
+	
+    filter: gray;
+}
+
+.psw-process{
+    width: 270px;
+    &.div-left-shift{ margin-left: 48.5%}
+    &.div-inline{
+        display: inline-block;
+        vertical-align: middle;
+        padding-top: 15px;
+    }
+}
+
+.span-courseStatus-OPN, .span-courseEnrollStatus-REG{
+	color: #62a945;
+}
+
+.span-courseStatus-CLD, .span-courseEnrollStatus-REJ{
+	color:#ac1f2d;
+}
+
+.span-courseStatus-FUL{
+	color:rgb(139,182,199);
+}
+
+.span-courseEnrollStatus-ACT {
+	color:#6ba2b8;
+}
+
+.span-courseEnrollStatus-CAN{
+	color:rgb(174,36,49);
+}
+
+.span-courseEnrollStatus-PND{
+	color: #d87b28;
+}
+
+
+

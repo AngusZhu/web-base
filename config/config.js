@@ -1,3 +1,5 @@
+'use strict';
+
 var window;
 exports.APPCONFIG = {
 	ENV: 'dev',
