@@ -6,10 +6,16 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bootstrap-datepicker": "~1.4.0",
+    "angular-resource": "~1.4.3",
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
+    "angular-ui-router": "~0.2.13",
+    "a0-angular-storage": "~0.0.10",
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
-    "html5-boilerplate": "~5.2.0"
+    "html5-boilerplate": "~5.2.0",
+    "jquery": "~2.1.3"
   }
 }
