@@ -110,7 +110,7 @@ function updateHash() {
 }
 
 function errrHandler( e ){
-    // 控制台发声,错误时beep一下
+
     console.log(" error happened...")
 }
 updateHash();
@@ -158,20 +158,20 @@ gulp.task('js', function () {
 });
 
 gulp.task('img_build', function(cb) {
-    if (flagImg === true) {
-        flagImg = false;
-        var spriteData =
-            gulp.src(options.img.src) // source path of the sprite images
-                .pipe(spritesmith({
-                    imgName: options.img.spriteImageName,
-                    cssName: options.img.spriteCssName,
-                    cssTemplate: '.scss.template.handlebars'
-            }));
-        del(options.img.clean);
-        spriteData.img.pipe(gulp.dest(options.img.imgDest)); // output path for the sprite
-        spriteData.css.pipe(gulp.dest(options.img.cssDest)); // output path for the CSS
-        return mergeStream(spriteData.img, spriteData.css);
-    }
+    //if (flagImg === true) {
+    //    flagImg = false;
+    //    var spriteData =
+    //        gulp.src(options.img.src) // source path of the sprite images
+    //            .pipe(spritesmith({
+    //                imgName: options.img.spriteImageName,
+    //                cssName: options.img.spriteCssName,
+    //                cssTemplate: '.scss.template.handlebars'
+    //        }));
+    //    del(options.img.clean);
+    //    spriteData.img.pipe(gulp.dest(options.img.imgDest)); // output path for the sprite
+    //    spriteData.css.pipe(gulp.dest(options.img.cssDest)); // output path for the CSS
+    //    return mergeStream(spriteData.img, spriteData.css);
+    //}
     cb();
 });
 
@@ -180,7 +180,7 @@ gulp.task('html', function () {
 });
 gulp.task('img', function () {
     flagImg = true;
-    gulp.run('img_build');
+    //gulp.run('img_build');
 });
 
 

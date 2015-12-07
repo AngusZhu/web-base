@@ -1,25 +1,25 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-window.webapp = angular.module('app', [
+window.webapp = angular.module('webapp', [
     'ui.router',
     'ngRoute',
+    'ngResource',
     'AddAuthTokenService',
-    'app.main',
-    'app.user',
-    'app.version'
+    'webapp.main',
+    'webapp.version'
 ]);
 
-webapp.config( function ($stateProvider, $urlRouterProvider) {
-    //$routeProvider.otherwise({redirectTo: '/main'});
-    $urlRouterProvider.when("", "/");
-
-    $stateProvider.state('app', {
+webapp.config( function ($routeProvider,$stateProvider, $urlRouterProvider,$locationProvider) {
+    $locationProvider.html5Mode(true);//delete url # symbol
+    $routeProvider.otherwise({redirectTo: '/'});
+    //$urlRouterProvider.otherwise("/");
+ /*   $stateProvider.state('webapp.main', {
         url: '/',
         templateUrl: 'web/main/main.html',
-        controller: 'app.menu.MainCtrl'
-    });
-
+        controller: 'MainCtrl'
+    });*/
+    $routeProvider.otherwise({redirectTo: '/main'});
 
 });
 
@@ -57,3 +57,4 @@ webapp.service("LoginService", function (store) {
         getProperty: getProperty
     };
 });
+

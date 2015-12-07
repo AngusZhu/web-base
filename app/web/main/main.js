@@ -1,5 +1,5 @@
-angular.module('app.main')
-    .controller('app.menu.MainCtrl', function ($scope, $rootScope, $resource, MENU_URL, AuthTokenService) {
+angular.module('webapp.main')
+    .controller('MainCtrl', function ($scope, $rootScope, $resource,MENU_URL) {
         console.log("come to mainCtrl");
         var resource = $resource(MENU_URL.GET_MENUS);
         resource.get(function (response) {

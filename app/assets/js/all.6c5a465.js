@@ -1,25 +1,25 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-window.webapp = angular.module('app', [
+window.webapp = angular.module('webapp', [
     'ui.router',
     'ngRoute',
+    'ngResource',
     'AddAuthTokenService',
-    'app.main',
-    'app.user',
-    'app.version'
+    'webapp.main',
+    'webapp.version'
 ]);
 
-webapp.config( function ($stateProvider, $urlRouterProvider) {
-    //$routeProvider.otherwise({redirectTo: '/main'});
-    $urlRouterProvider.when("", "/");
-
-    $stateProvider.state('app', {
+webapp.config( function ($routeProvider,$stateProvider, $urlRouterProvider,$locationProvider) {
+    $locationProvider.html5Mode(true);//delete url # symbol
+    $routeProvider.otherwise({redirectTo: '/'});
+    //$urlRouterProvider.otherwise("/");
+ /*   $stateProvider.state('webapp.main', {
         url: '/',
         templateUrl: 'web/main/main.html',
-        controller: 'app.menu.MainCtrl'
-    });
-
+        controller: 'MainCtrl'
+    });*/
+    $routeProvider.otherwise({redirectTo: '/main'});
 
 });
 
@@ -57,27 +57,36 @@ webapp.service("LoginService", function (store) {
         getProperty: getProperty
     };
 });
-angular.module('app.main', ['ngRoute'])
-    .config(function($stateProvider, $urlRouterProvider) {
-        $stateProvider.state('app.main', {
+
+
+angular.module('webapp.main', ['ngRoute'])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/main', {
+            templateUrl: 'web/main/main.html',
+            controller: 'MainCtrl'
+        });
+    }])
+   /* .config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+        $stateProvider.state('home', {
             url: '/main',
             views: {
                 'mainContainer': {
                     templateUrl: 'web/main/main.html',
-                    controller: 'app.menu.MainCtrl'
+                    controller: 'MainCtrl'
                 }
             }
         });
-    })
-    .factory("MAIN_URL",function(urlHelper){
+        $locationProvider.html5Mode(true);
+    })*/
+    .factory("MENU_URL",function(urlHelper){
         return urlHelper({
             'GET_MENUS' : 'menu/list'
         });
     });
 
 
-angular.module('app.main')
-    .controller('app.menu.MainCtrl', function ($scope, $rootScope, $resource, MENU_URL, AuthTokenService) {
+angular.module('webapp.main')
+    .controller('MainCtrl', function ($scope, $rootScope, $resource,MENU_URL) {
         console.log("come to mainCtrl");
         var resource = $resource(MENU_URL.GET_MENUS);
         resource.get(function (response) {
@@ -89,23 +98,6 @@ angular.module('app.main')
 
 
     });
-angular.module('app.user', ['ngRoute'])
-    .config(function($stateProvider, $urlRouterProvider) {
-        $stateProvider.state('app.user.regist', {
-            url: 'regist',
-            views: {
-                'mainContainer': {
-                    templateUrl: 'web/user/regist.html',
-                    controller: 'app.user.UserCtrl'
-                }
-            }
-        });
-});
-angular.module('app.user', ['ngRoute'])
-    .controller('app.user.UserCtrl', [function () {
-        console.log("hello world");
-    }]);
-
 /**
     example :
     
@@ -1991,7 +1983,7 @@ var window;
 exports.APPCONFIG = {
 	ENV: 'dev',
 	LANG: 'en_us',
-	BASE_URL: 'rest/',
+	BASE_URL: '//localhost:8080/rest/',
 	MOCK_URL: 'mock/', 
 	SUFFIX: '',
 	SHOW_VERSION: true,
@@ -2013,7 +2005,7 @@ var window;
 exports.APPCONFIG = {
 	ENV: 'dev',
 	LANG: 'en_us',
-	BASE_URL: 'rest/',
+	BASE_URL: 'http://localhost:8080/rest/',
 	MOCK_URL: 'mock/', 
 	SUFFIX: '',
 	SHOW_VERSION: true,

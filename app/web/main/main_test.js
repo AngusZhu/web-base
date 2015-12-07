@@ -1,8 +1,8 @@
 'use strict';
 
-describe('app.main module', function() {
+describe('webapp.main module', function() {
 
-  beforeEach(module('app.main'));
+  beforeEach(module('webapp.main'));
 
   describe('main controller', function(){
 
