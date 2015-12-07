@@ -300,3 +300,5 @@ For more information on AngularJS please check out http://angularjs.org/
 
 
 sudo npm  install gulp-jshint gulp-concat del gulp-chmod gulp-replace gulp-sass gulp-rename gulp-connect gulp-bower colors gulp.spritesmith merge-stream gulp-sequence gulp-plumber gulp-uglify map-stream --save-dev
+
+gulp bower
