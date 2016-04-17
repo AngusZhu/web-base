@@ -1,0 +1,55 @@
+<!DOCTYPE html  >
+<!--[if lt IE 7]>      <html lang="en" ng-app="webapp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="webapp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="webapp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="webapp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Web Base</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="web base angus">
+  <meta name="keywords" content="web base angus">
+  <meta name="author" content="Angus">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link href="vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="vendor/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="vendor/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link href="assets/css/all.0000000.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script>
+    window.BUILD_HTML_HASH = '0000000';
+  </script>
+  <base href="/" />
+</head>
+<body >
+sdfsdf
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <div ng-view></div>
+
+ <!-- <div>web-base app: v<span app-version></span></div>
+-->
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="vendor/angular/angular.js"></script>
+  <script src="vendor/angular-route/angular-route.js"></script>
+  <script src="vendor/angular-resource/angular-resource.min.js"></script>
+  <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="vendor/jquery/dist/jquery.min.js"></script>
+  <script src="vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="vendor/a0-angular-storage/dist/angular-storage.min.js"></script>
+  <script src="assets/js/all.0000000.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

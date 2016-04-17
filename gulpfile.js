@@ -48,12 +48,13 @@ var options = {
         src: [
             '!app/vendor/**/*.js',
             '!app/assets/js/all.*.js',
-            'app/app.js',
+            'app/web/app.js',
             'app/web/**/*.js',
             '!app/web/**/*_test.js',
             'app/_source/common/**/*.js',
             'app/_source/i18n/**/*.js',
             'config/**/*.js'
+
         ]
     },
     css: {
@@ -81,7 +82,7 @@ options.vendor = options.root + '/vendor';
 options.html.index = options.root + '/index.html';
 options.html.watch = ['app/web/**/*.html'];
 
-options.img.src = options.root + '/_source/img/*.{png,jpg,ico}';
+options.img.src = options.root + '/_source/img/*.{png,jpg}';
 options.img.imgDest = options.root + '/assets/img/';
 options.img.cssDest = options.root + '/_source/sass';
 options.img.clean = options.root + '/assets/img/sprite.*.png';
@@ -158,20 +159,20 @@ gulp.task('js', function () {
 });
 
 gulp.task('img_build', function(cb) {
-    //if (flagImg === true) {
-    //    flagImg = false;
-    //    var spriteData =
-    //        gulp.src(options.img.src) // source path of the sprite images
-    //            .pipe(spritesmith({
-    //                imgName: options.img.spriteImageName,
-    //                cssName: options.img.spriteCssName,
-    //                cssTemplate: '.scss.template.handlebars'
-    //        }));
-    //    del(options.img.clean);
-    //    spriteData.img.pipe(gulp.dest(options.img.imgDest)); // output path for the sprite
-    //    spriteData.css.pipe(gulp.dest(options.img.cssDest)); // output path for the CSS
-    //    return mergeStream(spriteData.img, spriteData.css);
-    //}
+    if (flagImg === true) {
+        flagImg = false;
+        var spriteData =
+            gulp.src(options.img.src) // source path of the sprite images
+                .pipe(spritesmith({
+                    imgName: options.img.spriteImageName,
+                    cssName: options.img.spriteCssName,
+                    cssTemplate: '.scss.template.handlebars'
+            }));
+        del(options.img.clean);
+        spriteData.img.pipe(gulp.dest(options.img.imgDest)); // output path for the sprite
+        spriteData.css.pipe(gulp.dest(options.img.cssDest)); // output path for the CSS
+        return mergeStream(spriteData.img, spriteData.css);
+    }
     cb();
 });
 
@@ -249,10 +250,10 @@ gulp.task('watch', function (cb) {
 
 gulp.task('connect', function(cb) {
     connect.server({
-        port: 80,
+        port: 9999,
         root: options.root,
         livereload: true
     });
     cb();
 });
-gulp.task('live', ['connect', 'watch']);
+gulp.task('live', ['default','connect', 'watch']);

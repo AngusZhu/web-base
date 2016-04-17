@@ -1,25 +1,25 @@
 angular.module('webapp.main', ['ngRoute'])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/main', {
-            templateUrl: 'web/main/main.html',
-            controller: 'MainCtrl'
-        });
-    }])
-   /* .config(function($stateProvider, $urlRouterProvider,$locationProvider) {
-        $stateProvider.state('home', {
-            url: '/main',
+    .config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+        $locationProvider.html5Mode(true);//delete url # symbol
+
+        $stateProvider.state('app.index', {
+            url : '/index',
             views: {
                 'mainContainer': {
-                    templateUrl: 'web/main/main.html',
+                    templateUrl: 'web/main/index.html',
                     controller: 'MainCtrl'
                 }
             }
         });
-        $locationProvider.html5Mode(true);
-    })*/
-    .factory("MENU_URL",function(urlHelper){
-        return urlHelper({
-            'GET_MENUS' : 'menu/list'
-        });
-    });
 
+        $stateProvider.state('app.main', {
+            url : '/main',
+            views: {
+                'mainContainer': {
+                    templateUrl: 'web/main/index.html',
+                    controller: 'MainCtrl'
+                }
+            }
+        });
+
+    });

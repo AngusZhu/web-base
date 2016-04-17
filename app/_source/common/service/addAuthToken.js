@@ -19,7 +19,8 @@ webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $rootSc
 		response: function(response) {
 			if (response.data.returnCode === "9010103" || response.data.returnCode === "9010105" ||
 				response.data.returnCode === "9010101" || response.data.returnCode === "9010102" ||
-				response.data.returnCode === "9010104" || response.data.returnCode === "9010106" || response.data.returnCode === "9010113") {
+				response.data.returnCode === "9010104" || response.data.returnCode === "9010106" ||
+				response.data.returnCode === "9010113") {
 				// $window.location.href = "#/login";
 				var stateService = $injector.get('$state');
 				stateService.go('user.login');

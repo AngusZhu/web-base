@@ -4,7 +4,7 @@ var window;
 exports.APPCONFIG = {
 	ENV: 'dev',
 	LANG: 'en_us',
-	BASE_URL: 'http://localhost:8080/rest/',
+	BASE_URL: 'http://localhost:9000/',
 	MOCK_URL: 'mock/', 
 	SUFFIX: '',
 	SHOW_VERSION: true,

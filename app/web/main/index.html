@@ -1,0 +1,33 @@
+sdfsdfsdfsdfs
+<div>
+    <div class="container">
+        <div class="top-nav">
+            <ul class="nav clearfix">
+                <li ui-sref=".news"  ui-sref-active="active"><a href="javascript:;">news</a></li>
+                <li ui-sref=".booking"  ui-sref-active="active">
+                    <a href="javascript:;">
+                        <p>My</p>
+                        <p>Bookingssss</p>
+                    </a>
+                </li>
+                <li ui-sref=".facility"  ui-sref-active="active"><a href="javascript:;">Facilities</a></li>
+                <li ui-sref=".training"  ui-sref-active="active"><a href="javascript:;">training</a></li>
+                <!-- <li><a href="javascript:;"  ui-sref-active="active">Events</a></li> -->
+            </ul>
+        </div>
+        <div ui-view="mainContainer" class="right-sidebar">
+            home page
+        </div>
+        <div class="left-sidebar">
+            <ul class="list">
+                <li ui-sref=".profile"  ui-sref-active="active"><a href="javascript:;">My Profile <i class="icon icon-light"></i></a></li>
+                <li ui-sref=".account"  ui-sref-active="active"><a href="javascript:;">My Account <i class="icon icon-light"></i></a></li>
+                <li ui-sref=".daypass"  ui-sref-active="active"><a href="javascript:;">Day pass <i class="icon icon-light"></i></a></li>
+                <li ui-sref=".dependent" ng-if="isNotDependentMember"  ui-sref-active="active"><a href="javascript:;">Dependent  Patrons <i class="icon icon-light"></i></a></li>
+                <li>
+                    {{$rootScope}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -160,7 +160,7 @@ function func_init() {
 		fi
 	done
 	echo -e " "
-	echo -n "Api URL link(e.g. '//10.22.16.111:8080/hkgtaCoreservices/rest/'):"
+	echo -n "Api URL link(e.g. '//10.1.109.11:8080/PointsCoreServices/rest/'):"
 	read url
 
 	exec_config $env $url
