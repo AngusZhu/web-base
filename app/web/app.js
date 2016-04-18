@@ -5,18 +5,22 @@ window.webapp = angular.module('webapp', [
     'ui.router',
     'ngRoute',
     'ngResource',
+    'widget.overlay',
     'AddAuthTokenService',
     'webapp.main',
+    'webapp.login',
     'webapp.version'
 ]);
 webapp.config(function($stateProvider, $urlRouterProvider) {
-    console.log("comes to config");
     $urlRouterProvider.when("", "/");
 
     $stateProvider.state('app', {
         url : '/',
-        templateUrl : 'web/index.html',
-        controller: 'MainCtrl'
+        templateUrl : 'web/setting/index.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb : {
+            label : 'Common'
+        }
     });
 });
 

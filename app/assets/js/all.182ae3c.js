@@ -5,18 +5,22 @@ window.webapp = angular.module('webapp', [
     'ui.router',
     'ngRoute',
     'ngResource',
+    'widget.overlay',
     'AddAuthTokenService',
     'webapp.main',
+    'webapp.login',
     'webapp.version'
 ]);
 webapp.config(function($stateProvider, $urlRouterProvider) {
-    console.log("comes to config");
     $urlRouterProvider.when("", "/");
 
     $stateProvider.state('app', {
         url : '/',
-        templateUrl : 'web/index.html',
-        controller: 'MainCtrl'
+        templateUrl : 'web/setting/index.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb : {
+            label : 'Common'
+        }
     });
 });
 
@@ -60,7 +64,15 @@ angular.module('webapp.login', ['ngRoute'])
     .config(function($stateProvider, $urlRouterProvider,$locationProvider) {
         $locationProvider.html5Mode(true);//delete url # symbol
         console.log("login");
-
+        $stateProvider.state('app.login', {
+            url : '/login',
+            views: {
+                'mainContainer': {
+                    templateUrl: 'web/login/login.html',
+                    controller: 'MainCtrl'
+                }
+            }
+        });
 
     });
 angular.module('webapp.login')
@@ -95,12 +107,61 @@ angular.module('webapp.main', ['ngRoute'])
             }
         });
 
+    }).factory("MAIN_URLS", function(urlHelper) {
+        return urlHelper({
+            GET_SYSTEM_INFO: ['/system']
+        });
     });
 angular.module('webapp.main')
 
-.controller('MainCtrl', function($scope,$rootScope, $resource, $state,$window, $stateParams, AuthTokenService) {
-		//$scope.menuList=[{url:'/adlk',name:'dlfsd'}];
-		console.log("comes MainCtrl");
+.controller('MainCtrl', function($scope,$rootScope, $resource, $state,$window, $stateParams, AuthTokenService,MAIN_URLS,alertify) {
+		var resource=$resource(MAIN_URLS.GET_SYSTEM_INFO,"",{query:{method:'GET'}});
+		resource.query( function (data) {
+			if (data.returnCode === '000000' && data.data) {
+				console.log("error");
+				//$state.go('app.training.coaching.view',{coachComment:JSON.stringify(param)});
+			}else{
+				console.log("error2");
+			}
+		},function(data){
+			console.log(data);
+		});
+});
+
+
+angular.module('webapp.setting', ['ngRoute'])
+    .config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+        $locationProvider.html5Mode(true);//delete url # symbol
+
+        $stateProvider.state('app.setting', {
+            url : '/setting/rule',
+            views: {
+                'mainContainer': {
+                    templateUrl: 'web/setting/index.html',
+                    controller: 'SettingCtrl'
+                }
+            }
+        });
+
+    }).factory("SETTING_URLS", function(urlHelper) {
+        return urlHelper({
+            GET_ALL_MECHANISM: ['/mechanism']
+        });
+    });
+angular.module('webapp.setting')
+
+.controller('MainCtrl', function($scope,$rootScope, $resource, $state,$window, $stateParams, AuthTokenService,MAIN_URLS,alertify) {
+		var resource=$resource(MAIN_URLS.GET_SYSTEM_INFO,"",{query:{method:'GET'}});
+		resource.query( function (data) {
+			if (data.returnCode === '000000' && data.data) {
+				console.log("error");
+				//$state.go('app.training.coaching.view',{coachComment:JSON.stringify(param)});
+			}else{
+				console.log("error2");
+			}
+		},function(data){
+			console.log(data);
+		});
 });
 
 
@@ -1602,16 +1663,15 @@ webapp.factory('addTokenInterceptor', function(AuthTokenService) {
 		}
 	};
 });
-webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $rootScope, $injector) {
+webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $location,$rootScope, $injector) {
 	return {
 		response: function(response) {
-			if (response.data.returnCode === "9010103" || response.data.returnCode === "9010105" ||
-				response.data.returnCode === "9010101" || response.data.returnCode === "9010102" ||
-				response.data.returnCode === "9010104" || response.data.returnCode === "9010106" ||
-				response.data.returnCode === "9010113") {
-				// $window.location.href = "#/login";
+			debugger;
+			if (AuthTokenService.getCurrentToken() === "No-Token") {
+				//$window.location.href = "/login";
 				var stateService = $injector.get('$state');
-				stateService.go('user.login');
+				stateService.go('app.login');
+				AuthTokenService.setCurrentToken("sdkflsdfj");
 				return response;
 			}
 			if (response.data.returnCode) {
@@ -1633,10 +1693,10 @@ webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $rootSc
 });
 
 angular.module('AddAuthTokenService',['angular-storage'])
-.factory('WPStore', function(store) {
+.factory('PointStore', function(store) {
   return store.getNamespacedStore('wp');
 })
-.service('AuthTokenService', function(WPStore) {
+.service('AuthTokenService', function(PointStore) {
     var service = this,
         currentToken = null,
     	currentUserNo = null,
@@ -1661,26 +1721,26 @@ angular.module('AddAuthTokenService',['angular-storage'])
     		switch(rightsType) {
     		case rightsTypeArry[0]:
     			currentCustomerFacilityRights = rights;
-    			WPStore.set('__facilityRights', rights);
+    			PointStore.set('__facilityRights', rights);
     			break;
     			
     		case rightsTypeArry[1]:
     			currentCustomerTrainingRights = rights;
-    			WPStore.set('__trainingRights', rights);
+    			PointStore.set('__trainingRights', rights);
     			break;
     			
     		case rightsTypeArry[2]:
     			currentCustomerOtherRights = rights;
-    			WPStore.set('__otherRights', rights);
+    			PointStore.set('__otherRights', rights);
     			break;
     		}
     	}  	
     };
     
     service.initCurrentCustomerRights = function(){
-    	WPStore.set('__facilityRights', []);
-    	WPStore.set('__trainingRights', []);
-    	WPStore.set('__otherRights', []);
+    	PointStore.set('__facilityRights', []);
+    	PointStore.set('__trainingRights', []);
+    	PointStore.set('__otherRights', []);
     };
     
     service.getCurrentCustomerRights = function(rightsType){
@@ -1688,15 +1748,15 @@ angular.module('AddAuthTokenService',['angular-storage'])
     	
 		switch(rightsType) {
 		case rightsTypeArry[0]:
-			currentCustomerRights = WPStore.get('__facilityRights');
+			currentCustomerRights = PointStore.get('__facilityRights');
 			break;
 			
 		case rightsTypeArry[1]:
-			currentCustomerRights = WPStore.get('__trainingRights');
+			currentCustomerRights = PointStore.get('__trainingRights');
 			break;
 			
 		case rightsTypeArry[2]:
-			currentCustomerRights = WPStore.get('__otherRights');
+			currentCustomerRights = PointStore.get('__otherRights');
 			break;
 		}
     	   	
@@ -1705,65 +1765,65 @@ angular.module('AddAuthTokenService',['angular-storage'])
     
     service.setCurrentToken = function(token) {
     	currentToken = token;
-        WPStore.set('token', token);
+        PointStore.set('token', token);
         return currentToken;
     };
 
     service.getCurrentToken = function() {
         if (!currentToken) {
-        	currentToken = WPStore.get('token');
+        	currentToken = PointStore.get('token');
         }
         return currentToken || "No-Token";
     };
     //USERID
     service.setId = function(id) {
         id = id;
-        WPStore.set('__id', id);
+        PointStore.set('__id', id);
         return id;
     };
 
     service.getId = function() {
         if (!id) {
-            id = WPStore.get('__id');
+            id = PointStore.get('__id');
         }
         return id ;
     };
 
     service.setCustomerId = function(id) {
         currentCustomerId = id;
-        WPStore.set('__customer', currentCustomerId);
+        PointStore.set('__customer', currentCustomerId);
         return currentCustomerId;
     };
 
     service.getCustomerId = function() {
         if (!currentCustomerId) {
-            currentCustomerId = WPStore.get('__customer');
+            currentCustomerId = PointStore.get('__customer');
         }
         return currentCustomerId ;
     };
 
     service.setCustomerAgeRange = function(v) {
     	currentCustomerAgeRange = v;
-        WPStore.set('__customerAgeRange', currentCustomerAgeRange);
+        PointStore.set('__customerAgeRange', currentCustomerAgeRange);
         return currentCustomerAgeRange;
     };
 
     service.getCustomerAgeRange = function() {
         if (!currentCustomerAgeRange) {
-        	currentCustomerAgeRange = WPStore.get('__customerAgeRange');
+        	currentCustomerAgeRange = PointStore.get('__customerAgeRange');
         }
         return currentCustomerAgeRange ;
     };
        
     service.setCustomerMemberStatus = function(v) {
     	currentMemberStatus = v;
-        WPStore.set('__memberStatus', currentMemberStatus);
+        PointStore.set('__memberStatus', currentMemberStatus);
         return currentMemberStatus;
     };
 
     service.getCustomerMemberStatus = function() {
         if (!currentMemberStatus) {
-        	currentMemberStatus = WPStore.get('__memberStatus');
+        	currentMemberStatus = PointStore.get('__memberStatus');
         }
         return currentMemberStatus ;
     };
@@ -1772,13 +1832,13 @@ angular.module('AddAuthTokenService',['angular-storage'])
     // FULL NAME
     service.setFullName = function(v) {
         fullName = v;
-        WPStore.set('__fullname', v);
+        PointStore.set('__fullname', v);
         return fullName;
     };
 
     service.getFullName = function() {
         if (!fullName) {
-            fullName = WPStore.get('__fullname');
+            fullName = PointStore.get('__fullname');
         }
         return fullName ;
     };
@@ -1786,13 +1846,13 @@ angular.module('AddAuthTokenService',['angular-storage'])
     //USERNO 
     service.setCurrentUserNo = function(userNo) {
         currentUserNo = userNo;
-        WPStore.set('userNo', userNo);
+        PointStore.set('userNo', userNo);
         return currentUserNo;
     };
 
     service.getCurrentUserNo = function() {
         if (!currentUserNo) {
-            currentUserNo = WPStore.get('userNo');
+            currentUserNo = PointStore.get('userNo');
         }
         return currentUserNo ;
     };
@@ -1800,13 +1860,13 @@ angular.module('AddAuthTokenService',['angular-storage'])
     //USERNAME
     service.setCurrentUserName = function(userName) {
         currentUserName = userName;
-        WPStore.set('userName', userName);
+        PointStore.set('userName', userName);
         return currentUserName;
     };
 
     service.getCurrentUserName = function() {
         if (!currentUserName) {
-            currentUserName = WPStore.get('userName');
+            currentUserName = PointStore.get('userName');
         }
         return currentUserName ;
     };
@@ -1814,26 +1874,26 @@ angular.module('AddAuthTokenService',['angular-storage'])
     //userType currentUserType
     service.setCurrentUserType = function(userType) {
     	currentUserType = userType;
-        WPStore.set('userType', userType);
+        PointStore.set('userType', userType);
         return currentUserType;
     };
 
     service.getCurrentUserType = function() {
         if (!currentUserType) {
-        	currentUserType = WPStore.get('userType');
+        	currentUserType = PointStore.get('userType');
         }
         return currentUserType ;
     };
     //kaptcha currentKaptcha
     service.setCurrentKaptcha = function(kaptcha) {
     	currentKaptcha = kaptcha;
-        WPStore.set('kaptcha', kaptcha);
+        PointStore.set('kaptcha', kaptcha);
         return currentKaptcha;
     };
 
     service.getCurrentKaptcha = function() {
         if (!currentKaptcha) {
-        	currentKaptcha = WPStore.get('kaptcha');
+        	currentKaptcha = PointStore.get('kaptcha');
         }
         return currentKaptcha ;
     };
@@ -1841,13 +1901,13 @@ angular.module('AddAuthTokenService',['angular-storage'])
     //Cookie currentCookie
     service.setCurrentCookie = function(cookie) {
     	currentCookie = cookie;
-        WPStore.set('cookie', cookie);
+        PointStore.set('cookie', cookie);
         return currentCookie;
     };
 
     service.getCurrentCookie = function() {
         if (!currentCookie) {
-        	currentCookie = WPStore.get('cookie');
+        	currentCookie = PointStore.get('cookie');
         }
         return currentCookie ;
     };
@@ -2012,7 +2072,7 @@ var window;
 exports.APPCONFIG = {
 	ENV: 'dev',
 	LANG: 'en_us',
-	BASE_URL: 'http://localhost:9000/',
+	BASE_URL: 'http://localhost:9000/rest',
 	MOCK_URL: 'mock/', 
 	SUFFIX: '',
 	SHOW_VERSION: true,

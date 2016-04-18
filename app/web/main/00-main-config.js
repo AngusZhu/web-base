@@ -22,4 +22,8 @@ angular.module('webapp.main', ['ngRoute'])
             }
         });
 
+    }).factory("MAIN_URLS", function(urlHelper) {
+        return urlHelper({
+            GET_SYSTEM_INFO: ['/system']
+        });
     });

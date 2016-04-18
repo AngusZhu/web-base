@@ -1,4 +1,4 @@
-angular.module('webapp.main')
+angular.module('webapp.setting')
 
 .controller('MainCtrl', function($scope,$rootScope, $resource, $state,$window, $stateParams, AuthTokenService,MAIN_URLS,alertify) {
 		var resource=$resource(MAIN_URLS.GET_SYSTEM_INFO,"",{query:{method:'GET'}});

@@ -14,16 +14,15 @@ webapp.factory('addTokenInterceptor', function(AuthTokenService) {
 		}
 	};
 });
-webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $rootScope, $injector) {
+webapp.factory('noTokenInterceptor', function($window, AuthTokenService, $location,$rootScope, $injector) {
 	return {
 		response: function(response) {
-			if (response.data.returnCode === "9010103" || response.data.returnCode === "9010105" ||
-				response.data.returnCode === "9010101" || response.data.returnCode === "9010102" ||
-				response.data.returnCode === "9010104" || response.data.returnCode === "9010106" ||
-				response.data.returnCode === "9010113") {
-				// $window.location.href = "#/login";
+			debugger;
+			if (AuthTokenService.getCurrentToken() === "No-Token") {
+				//$window.location.href = "/login";
 				var stateService = $injector.get('$state');
-				stateService.go('user.login');
+				stateService.go('app.login');
+				AuthTokenService.setCurrentToken("sdkflsdfj");
 				return response;
 			}
 			if (response.data.returnCode) {
